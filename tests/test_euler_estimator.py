@@ -44,3 +44,5 @@ assert euler.calc_estimated_points(point=point_3, step_size=2, num_steps=3) == [
    (3.6, {'A': 3.95, 'B': -1.85, 'C': -4.4}), # after 2nd step
    (5.6, {'A': 13.85, 'B': 2.35, 'C': -11.8}) # after 3rd step
 ]
+
+euler.plot()

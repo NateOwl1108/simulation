@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+plt.style.use('bmh')
+
 class EulerEstimator():
   def __init__(self, derivatives):
     self.derivatives = derivatives
@@ -30,28 +33,30 @@ class EulerEstimator():
     return(x, values)
   
   def calc_estimated_points(self, point , step_size, num_steps):
-    point_list = []
-    for char in point:
-      if char != '(' or char != ')':
-        point_list.append(char)
-    x = point_list[0]
-    value_dict = dict(point_list[1])
-    point_x = float(x)
+    value_dict = dict(point[1])
     values = []
-    values.append((point_x,value_dict))
+    values.append((point[0],value_dict))
     for i in range(num_steps):
       point = self.step_forward(point, step_size)
-      point_list = []
-      for char in point:
-        if char != '(' or char != ')':
-          point_list.append(char)
-      x = point_list[0]
-      value_dict = dict(point_list[1])
-      point_x = float(x)
-      values.append((point_x,value_dict))
+      value_dict = dict(point[1])
+
+      values.append((point[0],value_dict))
       
     return values
 
+  def plot(self):
+    function_values = self.calc_estimated_points((0, {'A': 0, 'B': 0, 'C': 0}), 0.01, 500)
+    for key in self.derivatives:
+      function=[[],[]]
+      for value in function_values:
+        function[0].append(value[0])
+        function[1].append(value[1][key])
+      plt.plot(function[0], function[1] , label = key) 
+    plt.xlabel('x - axis') 
+    plt.ylabel('y - axis') 
+    plt.legend() 
+    plt.savefig('EulerEstimator.png')
+  
 
 
 
