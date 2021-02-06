@@ -44,8 +44,8 @@ class EulerEstimator():
       
     return values
 
-  def plot(self):
-    function_values = self.calc_estimated_points((0, {'A': 0, 'B': 0, 'C': 0}), 0.01, 500)
+  def plot(self, initial_point, step_size. num_steps):
+    function_values = self.calc_estimated_points(initial_point, step_size, num_steps)
     for key in self.derivatives:
       function=[[],[]]
       for value in function_values:
