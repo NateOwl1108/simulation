@@ -6,26 +6,17 @@ class EulerEstimator():
     self.derivatives = derivatives
   
   def calc_derivative_at_point(self, point):
-    point_list = []
-    for char in point:
-      if char != '(' or char != ')':
-        point_list.append(char)
-    x = point_list[0]
-    values = point_list[1]
-    return_values = dict(values)
-    
-    for key in values:
-      return_values[key] =  self.derivatives[key](x, values)
+    return_values = dict(point[1])
+    copy_dict = dict( self.derivatives)
+    for key in point[1]:
+      return_values[key] = copy_dict[key](point[0], point[1])
     return return_values
 
   def step_forward(self, point, step_size):
     
-    point_list = []
-    for char in point:
-      if char != '(' or char != ')':
-        point_list.append(char)
-    x = point_list[0] + step_size
-    values = point_list[1]
+    
+    x = float(point[0] + step_size)
+    values = dict(point[1])
     derivative = self.calc_derivative_at_point(point)
     for key in values:
       values[key] = round(values[key] + step_size * derivative[key],9)
@@ -44,7 +35,7 @@ class EulerEstimator():
       
     return values
 
-  def plot(self, initial_point, step_size. num_steps):
+  def plot(self, initial_point, step_size, num_steps):
     function_values = self.calc_estimated_points(initial_point, step_size, num_steps)
     for key in self.derivatives:
       function=[[],[]]
