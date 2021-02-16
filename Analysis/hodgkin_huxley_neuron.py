@@ -57,8 +57,30 @@ def I_K(t,x):
   V = x['V']
   return 0.3*(V + 10.6)
 
+def s(t):
+  if t> 10 and t< 11:
+    return 150
+  elif t> 20 and t< 21:
+    return 150
+  elif t> 30 and t< 40:
+    return 150
+  elif t> 50 and t< 11:
+    return 150
+  elif t> 53 and t< 54:
+    return 150
+  elif t> 56 and t< 57:
+    return 150
+  elif t> 59 and t< 60:
+    return 150
+  elif t> 62 and t< 63:
+    return 150
+  elif t> 65 and t< 66:
+    return 150
+  else:
+    return 0  
+    
 def dV_dt(t, x):
-  return -I_Na(t,x) - I_K(t,x)- I_K(t,x)
+  return s(t)-I_Na(t,x) - I_K(t,x)- I_K(t,x)
 
 derivatives = {
         'V': (lambda t,x: dV_dt(t,x)),
