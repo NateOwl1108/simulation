@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import math
 plt.style.use('bmh')
 
 class EulerEstimator():
@@ -47,10 +48,3 @@ class EulerEstimator():
     plt.ylabel('y - axis') 
     plt.legend() 
     plt.savefig('EulerEstimator.png')
-  
-
-
-
-
-
-
